@@ -2,6 +2,7 @@
 var testbench = document.getElementById('contentINJ');
 var userQuery = document.getElementById('userQuery');
 var button = document.getElementById('goBtn');
+var divINJ = document.getElementById('divINJ');
 
 // Metropolitan Meseum API
 var metUrl = "https://collectionapi.metmuseum.org/public/collection/v1/search";

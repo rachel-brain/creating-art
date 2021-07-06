@@ -219,8 +219,75 @@ img {
 
 
 
+/* Flex Mosaic Testing */
+/* Padding Y | X */
+:root {
+    font-size: 100px;
+}
 
+#divINJ {
+    display: flex;
+    flex-direction: row;
+    max-width: 100%;
+    border: 5px solid hotpink;
+    padding: 10px;
 
+}
+
+div {
+    /* border: 2px solid red; */
+    /* margin: 2px; */
+    justify-content: space-evenly;
+}
+
+/* .div1 {
+    padding: 3rem 2rem;
+    align-self: flex-start;
+} */
+
+.div2 {
+    /* border: 2px solid blue; */
+    display: flex;
+    flex-direction: column;
+
+}
+
+/* .div3 {
+    padding: 1.5rem 2rem;
+    align-self: flex-start;
+}
+
+.div4 {
+    padding: 1.5rem 2rem;
+    align-self: flex-start;
+} */
+
+/* .div5 {
+    padding: 3rem 2rem;
+    align-self: flex-start;
+} */
+
+.div6 {
+    /* border: 2px solid green; */
+    display: flex;
+    flex-direction: column;
+    /* align-self: flex-start; */
+}
+
+/* .div7 {
+    padding: 1rem 1rem;
+    align-self: flex-start;
+}
+
+.div8 {
+    padding: 1rem 1rem;
+    align-self: flex-start;
+}
+
+.div9 {
+    padding: 1rem 1rem;
+    align-self: flex-start;
+} */
 
 
 
