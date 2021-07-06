@@ -49,6 +49,7 @@
     --primaryRed: #ff0000;
     --classicGreen: #077909;
     --primaryYellow: #e6e600;
+    font-size: 15px;
 }
 
 body {
@@ -221,9 +222,6 @@ img {
 
 /* Flex Mosaic Testing */
 /* Padding Y | X */
-:root {
-    font-size: 100px;
-}
 
 #divINJ {
     display: flex;
