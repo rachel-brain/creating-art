@@ -5,16 +5,50 @@
 }
 
 :root {
-    /* Dark Mode */
     --darkBG: #111111;
-    /* Light Mode */
     --lightBG: #999999;
-    --limeGreen: #69b00b;
-    --rose: #b00b69;
-    --blueGrey: #00334d;
-    --midTeal: #77b2d9;
     --black: #000000;
     --white: #fff;
+    --darkOrange: #e5834d;
+    --lightOrange: #eca265;
+    --cream: #fff4e7;
+    --palePink: #ea8ea1;
+    --peachPink: #d6646f;
+    --mauve: #ac6ab9;
+    --limeGreen: #69b00b;
+    --rose: #b00b69;
+    --darkGrey: #696969;
+    --moreMauve: #ab69ba;
+    --blueGrey: #00334d;
+    --tequilaSunrise: #d82929;
+    --orange: #fb8100;
+    --custard: #ffc14a;
+    --lemonade: #ece4c0;
+    --mint: #77d9d9;
+    --paleTeal: #77c5d9;
+    --midTeal: #77b2d9;
+    --palePurple: #779ed9;
+    --purple: #778bd9;
+    --eggwhite: #f8e6bd;
+    --mustard: #ffcf00;
+    --darkPeach: #f37852;
+    --fire: #f93900;
+    --chocolate: #5c2604;
+    --brunswickGreen: #133412;
+    --paleMushroom: #dac1c3;
+    --mossGreen: #497529;
+    --grassGreen: #5f9422;
+    --greyGreen: #7d8078;
+    --oldBlue: #328bc1;
+    --brickRed: #c74e4e;
+    --pineapple: #ffdb6c;
+    --avocado: #7cd47d;
+    --swissMushroom: #9c6464;
+    --paleGrey: #f5f5f5;
+    --primaryBlue: #0000ff;
+    --primaryRed: #ff0000;
+    --classicGreen: #077909;
+    --primaryYellow: #e6e600;
 }
 
 body {
@@ -45,6 +79,13 @@ h2 {
     font-size: 1.6rem;
     color: var(--midTeal);
     line-height: 1.2;
+}
+
+h3 {
+    font-size: 2.75rem;
+    color: var(--mauve);
+    line-height: 1.5;
+    margin-top: 30px;
 }
 
 h4 {
@@ -94,7 +135,7 @@ img {
     border-radius: 5px;
 }
 
-.row:after {
+.row::after {
     content: "";
     display: table;
     clear: both;
@@ -119,12 +160,61 @@ img {
     width: 100%;
 }
 
+.footer-3 {
+    background-color: var(--mauve);
+    color: var(--blueGrey);
+    font-size: 1.0rem;
+    text-align: center;
+    padding: 15px;
+    margin-top: 5px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
 
+#chosen-card-1 {
+    display: block;
+    position: relative;
+    padding-left: 5px;
+    margin-bottom: 12px;
+    width: 30%;
+    float: left;
+    text-align: left;
+    margin: 2px 5px 100px 5px;
+    border: 2px solid var(--black);
+    border-radius: 5px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
 
+#chosen-card-2 {
+    display: block;
+    position: relative;
+    padding-left: 5px;
+    margin-bottom: 12px;
+    width: 55%;
+    height: auto;
+    float: left;
+    margin: 2px 5px 100px 5px;
+    border: 2px solid var(--black);
+    border-radius: 5px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
 
+.gallery {
+    margin: 10px;
+    float: left;
+}
 
-
-
+#art-image {
+    width: 55%;
+    height: auto;
+}
 
 
 
@@ -160,7 +250,7 @@ img {
     --limeGreen: #69b00b;
     --rose: #b00b69;
     --darkGrey: #696969;
-    --moreMauve: #696969;
+    --moreMauve: #ab69ba;
 }
 
 /* Color palette sourced from: https://www.color-hex.com/color-palette/110962 - Summer Harmony Color Palette */
