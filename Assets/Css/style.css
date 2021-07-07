@@ -5,50 +5,51 @@
 }
 
 :root {
-  --darkBG: #111111;
-  --lightBG: #999999;
-  --black: #000000;
-  --white: #fff;
-  --darkOrange: #e5834d;
-  --lightOrange: #eca265;
-  --cream: #fff4e7;
-  --palePink: #ea8ea1;
-  --peachPink: #d6646f;
-  --mauve: #ac6ab9;
-  --limeGreen: #69b00b;
-  --rose: #b00b69;
-  --darkGrey: #696969;
-  --moreMauve: #ab69ba;
-  --blueGrey: #00334d;
-  --tequilaSunrise: #d82929;
-  --orange: #fb8100;
-  --custard: #ffc14a;
-  --lemonade: #ece4c0;
-  --mint: #77d9d9;
-  --paleTeal: #77c5d9;
-  --midTeal: #77b2d9;
-  --palePurple: #779ed9;
-  --purple: #778bd9;
-  --eggwhite: #f8e6bd;
-  --mustard: #ffcf00;
-  --darkPeach: #f37852;
-  --fire: #f93900;
-  --chocolate: #5c2604;
-  --brunswickGreen: #133412;
-  --paleMushroom: #dac1c3;
-  --mossGreen: #497529;
-  --grassGreen: #5f9422;
-  --greyGreen: #7d8078;
-  --oldBlue: #328bc1;
-  --brickRed: #c74e4e;
-  --pineapple: #ffdb6c;
-  --avocado: #7cd47d;
-  --swissMushroom: #9c6464;
-  --paleGrey: #f5f5f5;
-  --primaryBlue: #0000ff;
-  --primaryRed: #ff0000;
-  --classicGreen: #077909;
-  --primaryYellow: #e6e600;
+    --darkBG: #111111;
+    --lightBG: #999999;
+    --black: #000000;
+    --white: #fff;
+    --darkOrange: #e5834d;
+    --lightOrange: #eca265;
+    --cream: #fff4e7;
+    --palePink: #ea8ea1;
+    --peachPink: #d6646f;
+    --mauve: #ac6ab9;
+    --limeGreen: #69b00b;
+    --rose: #b00b69;
+    --darkGrey: #696969;
+    --moreMauve: #ab69ba;
+    --blueGrey: #00334d;
+    --tequilaSunrise: #d82929;
+    --orange: #fb8100;
+    --custard: #ffc14a;
+    --lemonade: #ece4c0;
+    --mint: #77d9d9;
+    --paleTeal: #77c5d9;
+    --midTeal: #77b2d9;
+    --palePurple: #779ed9;
+    --purple: #778bd9;
+    --eggwhite: #f8e6bd;
+    --mustard: #ffcf00;
+    --darkPeach: #f37852;
+    --fire: #f93900;
+    --chocolate: #5c2604;
+    --brunswickGreen: #133412;
+    --paleMushroom: #dac1c3;
+    --mossGreen: #497529;
+    --grassGreen: #5f9422;
+    --greyGreen: #7d8078;
+    --oldBlue: #328bc1;
+    --brickRed: #c74e4e;
+    --pineapple: #ffdb6c;
+    --avocado: #7cd47d;
+    --swissMushroom: #9c6464;
+    --paleGrey: #f5f5f5;
+    --primaryBlue: #0000ff;
+    --primaryRed: #ff0000;
+    --classicGreen: #077909;
+    --primaryYellow: #e6e600;
+    font-size: 15px;
 }
 
 body {
@@ -218,9 +219,6 @@ img {
 
 /* Flex Mosaic Testing */
 /* Padding Y | X */
-:root {
-  font-size: 100px;
-}
 
 #divINJ {
   display: flex;
