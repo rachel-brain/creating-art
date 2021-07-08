@@ -30,7 +30,7 @@ var colorsTarget = [
 var metUrl = "https://collectionapi.metmuseum.org/public/collection/v1/search";
 var metObjUrl = "https://collectionapi.metmuseum.org/public/collection/v1/objects/";
 var metImg = "?primaryImage";
-var imgCheck = "?hasimages=true";
+var imgCheck = "&hasImages=true";
 
 // Harvard Museum API
 var hAPI = "97a4196b-d37b-433b-bd93-476d81c28e29"
@@ -63,38 +63,53 @@ var clHEX = [
 ];
 
 // Harvard API //
-// Current hard targets one div (will fix)
 
-// function harvardSearch () { 
-//     for ( i=0; i < harvardTarget.length; i++ ) {
-//     fetch(harvardUrl+harvardKey)
-//         .then(function (response) { return response.json(); })
-//         .then(function (data) {
-//             var dataValidate = data.records[0].primaryimageurl
-//             console.log(dataValidate);
-//             if (dataValidate == undefined) {
-//                 harvardSearch();
-//             } else
-//                 harvardTarget[0].setAttribute('src', data.records[0].primaryimageurl);
-//         }
-//     )}
-// }
+function harvardSearch () { 
+    for ( i=0; i < harvardTarget.length; i++ ) {
+    fetch(harvardUrl+harvardKey)
+        .then(function (response) { return response.json(); })
+        .then(function (data) {
+            var dataValidate = data.records[0].primaryimageurl
+            console.log(dataValidate);
+            if (dataValidate == undefined) {
+                harvardSearch();
+            } else
+                harvardTarget[0].setAttribute('src', data.records[0].primaryimageurl);
+        }
+    )}
+}
 
 // Metropolitan API //
-// CORS access issue from localhost but should function
 
-function randomResult (objectIDs) {
-    for ( i = 0; i < metTarget.length; i++ ) {                    // Loop the targets for the Met API
-    var j = Math.floor(Math.random() * objectIDs.length);         // Pick a random item from the valid results array
-    metTarget[i].setAttribute('src', metObjUrl + objectIDs[j]);   // Apply the random image from the valid results array to each div
+function randomResult (data) {
+    var url = data.objectIDs
+        metTarget.forEach(function (target, i) {
+            var j = Math.floor(Math.random() * url.length);
+            fetch(metObjUrl + url[j])
+                .then(function (response) { return response.json(); })
+                .then(function (data) { 
+                    console.log(i);
+                    metTarget[i].setAttribute('src', data.primaryImage); });
+        })
+
     }
-}   
 
 function metSearch () {
-    fetch(metUrl + imgCheck)
+    fetch(metUrl + "?q=sunflowers" + imgCheck)
         .then(function (response) { return response.json(); })
-        .then(randomResult(data.objectIDs));
+        .then(function (data) {
+            randomResult(data);
+        });
 }
+
+// OFFLINE Met API //
+// function randomResult () {
+//     for ( i = 0; i < metTarget.length; i++ ) {                    // Loop the targets for the Met API
+//     var j = Math.floor(Math.random() * metData.length);         // Pick a random item from the valid results array
+//     metTarget[i].setAttribute('src', metObjUrl + metData[j]);   // Apply the random image from the valid results array to each div
+//     }
+// }   
+
 
 // Colours API //
 // CORS access issue from localhost but should function
@@ -115,10 +130,8 @@ function metSearch () {
 
 // OFFLINE Colours API //
 function colorApiInjection () {
-    data.map(function(item, index) { // Map creates a concurrent loop
+    colData.map(function(item, index) { // Map creates a concurrent loop
         for ( i = 0; i < colorsTarget.length; i++ ) {
-            console.log(item);
-            console.log(item.imageUrl);
             colorsTarget[i].setAttribute('src', item.imageUrl.replace('http', 'https'))
         }
     }) 
@@ -127,8 +140,9 @@ function colorApiInjection () {
 
 
 function init () {
-    // harvardSearch();
-    // metSearch();
+    harvardSearch();
+    metSearch();
+    // randomResult();
     colorApiInjection();
     // colorApiSearch();
 }
@@ -201,3 +215,25 @@ init();
 
 // Image:
 // primaryImage
+
+
+
+
+// function randomResult (data) {
+//     var url = data.objectIDs
+//     for ( i = 0; i < metTarget.length; i++ ) {                    // Loop the targets for the Met API
+//     var j = Math.floor(Math.random() * url.length);         // Pick a random item from the valid results array
+//     var newUrl = metObjUrl + url[j];
+//     metSearch2(newUrl);
+//     }
+// }   
+
+// function metSearch2 (newUrl) {
+//     fetch(newUrl)
+//         .then(function (response) { return response.json(); })
+//         .then(function (data) {
+//             for ( i = 0; i < metTarget.length; i++ ) {
+//                 metTarget[i].setAttribute('src', data.primaryImage);
+//             }
+//         });
+// }
