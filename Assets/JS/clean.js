@@ -1,18 +1,18 @@
-// DOM targeting for content injection
+// DOM targeting for content injection //
 
 // Row 1
 var big1 = document.getElementById('big1');
 
-var small1 = document.getElementById('small2');
-var small2 = document.getElementById('small3');
-var small3 = document.getElementById('small4');
-var small4 = document.getElementById('small5');
+var small1 = document.getElementById('small1');
+var small2 = document.getElementById('small2');
+var small3 = document.getElementById('small3');
+var small4 = document.getElementById('small4');
 
 // Row 2
-var small5 = document.getElementById('small6');
-var small6 = document.getElementById('small7');
-var small7 = document.getElementById('small8');
-var small8 = document.getElementById('small9');
+var small5 = document.getElementById('small5');
+var small6 = document.getElementById('small6');
+var small7 = document.getElementById('small7');
+var small8 = document.getElementById('small8');
 
 var big2 = document.getElementById('big2');
 
@@ -65,20 +65,20 @@ var clHEX = [
 // Harvard API //
 // Current hard targets one div (will fix)
 
-function harvardSearch () { 
-    for ( i=0; i < harvardTarget.length; i++ ) {
-    fetch(harvardUrl+harvardKey)
-        .then(function (response) { return response.json(); })
-        .then(function (data) {
-            var dataValidate = data.records[0].primaryimageurl
-            console.log(dataValidate);
-            if (dataValidate == undefined) {
-                harvardSearch();
-            } else
-                harvardTarget[0].setAttribute('src', data.records[0].primaryimageurl);
-        }
-    )}
-}
+// function harvardSearch () { 
+//     for ( i=0; i < harvardTarget.length; i++ ) {
+//     fetch(harvardUrl+harvardKey)
+//         .then(function (response) { return response.json(); })
+//         .then(function (data) {
+//             var dataValidate = data.records[0].primaryimageurl
+//             console.log(dataValidate);
+//             if (dataValidate == undefined) {
+//                 harvardSearch();
+//             } else
+//                 harvardTarget[0].setAttribute('src', data.records[0].primaryimageurl);
+//         }
+//     )}
+// }
 
 // Metropolitan API //
 // CORS access issue from localhost but should function
@@ -99,26 +99,38 @@ function metSearch () {
 // Colours API //
 // CORS access issue from localhost but should function
 
-function colorApiInjection () {
-    // Slice is only there due to less inputs on test html, can amend
-    data.map(function(item, index) { // Map creates a concurrent loop
-        colorsTarget[index].setAttribute('src', item.imageUrl.replace('http', 'https'))
-        // injections refers to an array with the target divs
-    }) 
-}
+// function colorApiInjection () {
+//     // Slice is only there due to less inputs on test html, can amend
+//     data.map(function(item, index) { // Map creates a concurrent loop
+//         colorsTarget[index].setAttribute('src', item.imageUrl.replace('http', 'https'))
+//         // injections refers to an array with the target divs
+//     }) 
+// }
 
-function colorApiSearch () {
-    fetch(clUrl + clHEX[0][0] + "?format=json")
-        .then(function (response) { return response.json() })
-        .then(colorApiInjection(data))
+// function colorApiSearch () {
+//     fetch(clUrl + clHEX[0][0] + "?format=json")
+//         .then(function (response) { return response.json() })
+//         .then(colorApiInjection(data))
+// }
+
+// OFFLINE Colours API //
+function colorApiInjection () {
+    data.map(function(item, index) { // Map creates a concurrent loop
+        for ( i = 0; i < colorsTarget.length; i++ ) {
+            console.log(item);
+            console.log(item.imageUrl);
+            colorsTarget[i].setAttribute('src', item.imageUrl.replace('http', 'https'))
+        }
+    }) 
 }
 
 
 
 function init () {
-    harvardSearch();
-    metSearch();
-    colorApiSearch();
+    // harvardSearch();
+    // metSearch();
+    colorApiInjection();
+    // colorApiSearch();
 }
 
 init();
