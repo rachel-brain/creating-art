@@ -99,14 +99,20 @@ function metSearch () {
 // Colours API //
 // CORS access issue from localhost but should function
 
-function colorApiSearch () {
+function colorApiInjection () {
     // Slice is only there due to less inputs on test html, can amend
     data.map(function(item, index) { // Map creates a concurrent loop
-        for (i=0;i<imgs.length;i++) {
-            colorsTarget[i][0].setAttribute('src', item.imageUrl.replace('http', 'https'))
-        }
+        colorsTarget[index].setAttribute('src', item.imageUrl.replace('http', 'https'))
+        // injections refers to an array with the target divs
     }) 
 }
+
+function colorApiSearch () {
+    fetch(clUrl + clHEX[0][0] + "?format=json")
+        .then(function (response) { return response.json() })
+        .then(colorApiInjection(data))
+}
+
 
 
 function init () {
