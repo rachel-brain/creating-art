@@ -1,0 +1,79 @@
+.layout {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+}
+
+.flex-container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.flex-container.columns {
+  flex-direction: column;
+}
+
+.flex-container.rows {
+  flex-direction: row;
+}
+
+.row,
+.column {
+  margin-bottom: 5px;
+  margin-right: 5px;
+}
+
+.column {
+  margin-right: 5px;
+}
+
+.column:last-child {
+  margin-right: 0px;
+}
+
+/* .flex-container .row {
+  } */
+
+.row {
+  flex: 1 1 auto;
+  height: 100%;
+}
+
+.column {
+  flex: 1 1 auto;
+  width: 50%;
+  height: 100%;
+}
+
+.a {
+  background: red;
+}
+
+.b {
+  background: blue;
+}
+
+.c {
+  background: orange;
+}
+
+.d {
+  background: yellow;
+}
+
+.e {
+  background: green;
+}
+
+.f {
+  background: brown;
+}
+
+.g {
+  background: pink;
+}
+
+.h {
+  background: grey;
+}
