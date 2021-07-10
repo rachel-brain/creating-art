@@ -30,7 +30,7 @@ var colorsTarget = [
 var metUrl = "https://collectionapi.metmuseum.org/public/collection/v1/search";
 var metObjUrl = "https://collectionapi.metmuseum.org/public/collection/v1/objects/";
 var metImg = "?primaryImage";
-var imgCheck = "?hasimages=true";
+var imgCheck = "&hasImages=true";
 
 // Harvard Museum API
 var hAPI = "97a4196b-d37b-433b-bd93-476d81c28e29"
@@ -80,20 +80,62 @@ var clHEX = [
 //     )}
 // }
 
+function harvardSearch () {
+    fetch(harvardUrl + harvardKey)
+        .then(function (response) { return response.json(); })
+        .then(function (data) {
+            var dataValidate = data.records[2].primaryimageurl;   // so far the API call is static, we need to make it dynamic, so it chooses random pictures every single time
+            big1.setAttribute("src", dataValidate);
+        })
+}
+
 // Metropolitan API //
 // CORS access issue from localhost but should function
 
-function randomResult (objectIDs) {
-    for ( i = 0; i < metTarget.length; i++ ) {                    // Loop the targets for the Met API
-    var j = Math.floor(Math.random() * objectIDs.length);         // Pick a random item from the valid results array
-    metTarget[i].setAttribute('src', metObjUrl + objectIDs[j]);   // Apply the random image from the valid results array to each div
-    }
-}   
+// function randomResult (objectIDs) {
+//     for ( i = 0; i < metTarget.length; i++ ) {                    // Loop the targets for the Met API
+//     var j = Math.floor(Math.random() * objectIDs.length);         // Pick a random item from the valid results array
+//     console.log(metObjUrl + objectIDs[j]);
+//     metTarget[i].setAttribute('src', metObjUrl + objectIDs[j]);   // Apply the random image from the valid results array to each div
+//     }
+// }   
 
+// function metSearch () {
+//     fetch(metUrl + imgCheck)
+//         .then(function (response) { return response.json(); })
+//         .then(randomResult(data.objectIDs));
+// }
+
+// first API call that resolves Name searches (such as sunflowers) and finds all relevant Met Museum ObjectIDs
 function metSearch () {
-    fetch(metUrl + imgCheck)
+    fetch("https://collectionapi.metmuseum.org/public/collection/v1/search?q=sunflowers" + imgCheck) // static at the moment, needs to adjust "q="
         .then(function (response) { return response.json(); })
-        .then(randomResult(data.objectIDs));
+        .then(function (data) {
+            randomResult(data.objectIDs);
+        })
+}
+
+//selects a random ObjectID from the array of ObjectIDs
+function randomResult (objectIDs) {
+    for ( i = 0; i < metTarget.length; i++ ) {
+        var j = Math.floor(Math.random() * objectIDs.length);
+
+        metObjSearch(j);
+
+    }
+}
+
+// 2nd API call that gets all the details of the Object ID, including image
+function metObjSearch (objectID) {
+    var URL = metObjUrl + objectID.toString();
+    fetch(URL)
+        .then(function (response) { return response.json(); })
+        .then(function (data) {
+            console.log(data);
+            var dataValidate = data.primaryImageSmall;
+            big2.setAttribute("src", dataValidate);
+
+        })
 }
 
 // Colours API //
@@ -117,8 +159,8 @@ function metSearch () {
 function colorApiInjection () {
     data.map(function(item, index) { // Map creates a concurrent loop
         for ( i = 0; i < colorsTarget.length; i++ ) {
-            console.log(item);
-            console.log(item.imageUrl);
+            // console.log(item);
+            // console.log(item.imageUrl);
             colorsTarget[i].setAttribute('src', item.imageUrl.replace('http', 'https'))
         }
     }) 
@@ -127,8 +169,8 @@ function colorApiInjection () {
 
 
 function init () {
-    // harvardSearch();
-    // metSearch();
+    harvardSearch();
+    metSearch();
     colorApiInjection();
     // colorApiSearch();
 }
