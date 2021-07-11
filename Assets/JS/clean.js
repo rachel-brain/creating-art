@@ -75,6 +75,7 @@ function harvardSearch () {
                 harvardSearch();
             } else
                 harvardTarget[0].setAttribute('src', data.records[0].primaryimageurl);
+                localStorage.setItem('harvardTarget', JSON.stringify(data));    // Store full api object 
         }
     )}
 }
@@ -108,6 +109,7 @@ function harvardSearch () {
         .then(function (data) {
             var dataValidate = data.records[2].primaryimageurl;   // so far the API call is static, we need to make it dynamic, so it chooses random pictures every single time
             big1.setAttribute("src", dataValidate);
+            localStorage.setItem('harvardTarget', JSON.stringify(data));    // Store full api object 
         })
 }
 
@@ -156,7 +158,7 @@ function metObjSearch (objectID) {
             console.log(data);
             var dataValidate = data.primaryImageSmall;
             big2.setAttribute("src", dataValidate);
-
+            localStorage.setItem('metTarget', JSON.stringify(data));    // Store full api object 
         })
 }
 
@@ -182,10 +184,17 @@ function colorApiInjection () {
     colData.map(function(item, index) { // Map creates a concurrent loop
         for ( i = 0; i < colorsTarget.length; i++ ) {
             colorsTarget[i].setAttribute('src', item.imageUrl.replace('http', 'https'))
+            localStorage.setItem('colorsTarget' + i, JSON.stringify(item));    // Store full api object 
         }
     }) 
 }
 
+// Page3
+function chosen(name) {
+    var object = localStorage.getItem(name);
+    localStorage.setItem('focusImage', object)
+    window.location.replace('./page3.html');
+}
 
 
 function init () {
