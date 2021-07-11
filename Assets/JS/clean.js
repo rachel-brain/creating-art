@@ -18,6 +18,11 @@ var big2 = document.getElementById('big2');
 
 // Row 3
 
+var aEl = document.querySelector(".a");
+var dEl = document.querySelector(".d");
+var eEl = document.querySelector(".e");
+var fEl = document.querySelector(".f");
+var eventEl = document.querySelector("#event");
 // API Arrays
 var harvardTarget = [big1];
 var metTarget = [big2];
@@ -25,6 +30,8 @@ var colorsTarget = [
     small1, small2, small3, small4, 
     small5, small6, small7, small8
 ];
+var smallGroup1 = [small1, small2, small3, small4];
+var smallGroup2 = [small5, small6, small7, small8];
 
 // Metropolitan Museum API
 var metUrl = "https://collectionapi.metmuseum.org/public/collection/v1/search?q=";
@@ -52,47 +59,26 @@ var lostRiver = ["133412", "dac1c3", "497529", "5f9422", "7d8078"];
 var othelloCostumes = ["328bc1", "c74e4e", "ffdb6c", "7cd47d", "9c6464"];
 var hubitatDashboards = ["f5f5f5", "0000ff", "ff0000", "077909", "e6e600"];
 
+var colorSelected = localStorage.getItem('color');
+
 //Page 3 variable
 var previousImages = [];
 
 var clHEX = [
-    dustySunset,
-    weirdos,
-    summerHarmony,
-    deepSeaBaby,
-    legacyOfFire,
-    lostRiver,
-    othelloCostumes,
-    hubitatDashboards
+    {name: "dusty-sunset", value: dustySunset},
+    {name: "weirdos", value: weirdos},
+    {name: "summer-harmony", value: summerHarmony},
+    {name: "deep-sea-baby", value: deepSeaBaby},
+    {name: "legacy-of-fire", value: legacyOfFire},
+    {name: "lost-river", value: lostRiver},
+    {name: "ot-hello-costumes", value: othelloCostumes},
+    {name: "hubitat-dashboards", value: hubitatDashboards}
 ];
+
 
 // Harvard API //
 
-
-// Metropolitan API //
-
-// function randomResult (data) {
-//     var url = data.objectIDs
-//         metTarget.forEach(function (target, i) {
-//             var j = Math.floor(Math.random() * url.length);
-//             fetch(metObjUrl + url[j])
-//                 .then(function (response) { return response.json(); })
-//                 .then(function (data) { 
-//                     console.log(i);
-//                     metTarget[i].setAttribute('src', data.primaryImage); });
-//         })
-
-//     }
-
-// function metSearch () {
-//     fetch(metUrl + "?q=sunflowers" + imgCheck)
-//         .then(function (response) { return response.json(); })
-//         .then(function (data) {
-//             randomResult(data);
-//         });
-// }
-
-function harvardSearch () {
+function harvardSearch (element) {
     fetch(harvardUrl + harvardQueries + harvardKey + hasImage)
         .then(function (response) { return response.json(); })
         .then(function (data) {
@@ -102,7 +88,7 @@ function harvardSearch () {
             if (dataValidate === null ) {                                   // if randomised object has no image, it restarts the API call.
                 harvardSearch()
             } else {
-                big1.setAttribute("src", dataValidate);
+                element.setAttribute("src", dataValidate);
             }
             localStorage.setItem('harvardTarget', JSON.stringify(data));    // Store full api object 
         })
@@ -132,32 +118,32 @@ function randomiseHarvardResult (data) {                                    // r
 // }
 
 // first API call that resolves Name searches (such as sunflowers) and finds all relevant Met Museum ObjectIDs
-function metSearch () {
-    console.log("https://collectionapi.metmuseum.org/public/collection/v1/search?q=" + metQueries + imgCheck)
+function metSearch (element) {
+    console.log(metUrl + metQueries + imgCheck)
     fetch(metUrl + metQueries + imgCheck) 
         .then(function (response) { return response.json(); })
         .then(function (data) {
-            randomResult(data.objectIDs);
+            randomResult(data.objectIDs, element);
         })
 }
 
 //selects a random ObjectID from the array of ObjectIDs
-function randomResult (objectIDs) {
+function randomResult (objectIDs, element) {
     for ( i = 0; i < metTarget.length; i++ ) {
         var j = Math.floor(Math.random() * objectIDs.length);
         console.log(j);
-        metObjSearch(j);
+        metObjSearch(j, element);
 
     }
 }
 
 // 2nd API call that gets all the details of the Object ID, including image
-function metObjSearch (objectID) {
+function metObjSearch (objectID, element) {
     var URL = metObjUrl + objectID.toString();
     fetch(URL)
         .then(function (response) {
             if (response.status === 404) {                              //some objects return 404. this restarts the API call.
-                metSearch();
+                metSearch(element);
             } else {
                 return response.json();
             }        
@@ -167,30 +153,36 @@ function metObjSearch (objectID) {
             var dataValidate = data.primaryImageSmall;
 
             if (dataValidate === "") {                                  // if randomised object has no image, it restarts the API call.
-                metSearch();
+                metSearch(element);
+            } else if (dataValidate === undefined) {
+                metSearch(element);
             } else {
-                big2.setAttribute("src", dataValidate);
+                element.setAttribute("src", dataValidate);
             }
             localStorage.setItem('metTarget', JSON.stringify(data));    // Store full api object 
         })
     }
 
 // Colours API //
-// CORS access issue from localhost but should function
 
-// function colorApiInjection () {
-//     // Slice is only there due to less inputs on test html, can amend
-//     data.map(function(item, index) { // Map creates a concurrent loop
-//         colorsTarget[index].setAttribute('src', item.imageUrl.replace('http', 'https'))
-//         // injections refers to an array with the target divs
-//     }) 
-// }
+function getColor(data) {
+    return data.name === colorSelected;
+}
 
-// function colorApiSearch () {
-//     fetch(clUrl + clHEX[0][0] + "?format=json")
-//         .then(function (response) { return response.json() })
-//         .then(colorApiInjection(data))
-// }
+function colorInjection(data) {
+    var colorOne = data.value[0];
+    var colorTwo = data.value[1];
+    var colorThree = data.value[2];
+    var colorFour = data.value[3];
+    var colorFive = data.value[4];
+
+    aEl.setAttribute("style", "background:#" + colorOne);
+    dEl.setAttribute("style", "background:#" + colorThree);
+    eEl.setAttribute("style", "background:#" + colorFour);
+    fEl.setAttribute("style", "background:#" + colorFive);
+    eventEl.setAttribute("style", "background-image: linear-gradient(#" + colorTwo + ",#" + colorOne + ",#" + colorThree + ",#" + colorFour);
+}
+
 
 // OFFLINE Colours API //
 function colorApiInjection () {
@@ -201,6 +193,7 @@ function colorApiInjection () {
         }
     }) 
 }
+
 
 // Page3
 
@@ -280,9 +273,12 @@ $("img").on("click", saveToLocalStorage);
 
 
 function init () {
-    harvardSearch();
-    metSearch();
+    smallGroup1.forEach(harvardSearch);
+    harvardSearch(big1);
+    smallGroup2.forEach(metSearch);
+    metSearch(big2);
     colorApiInjection();
+    colorInjection(clHEX.find(getColor));
     // colorApiSearch();
 }
 
