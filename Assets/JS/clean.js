@@ -38,7 +38,7 @@ var metUrl = "https://collectionapi.metmuseum.org/public/collection/v1/search?q=
 var metObjUrl = "https://collectionapi.metmuseum.org/public/collection/v1/objects/";
 var metImg = "?primaryImage";
 var imgCheck = "&hasImages=true";
-var metQueries = localStorage.getItem('metChecks').replace("_", "+"); 
+var metQueries = localStorage.getItem('metChecks'); 
 
 // Harvard Museum API
 var harvardKey = "&apikey=97a4196b-d37b-433b-bd93-476d81c28e29"
@@ -101,21 +101,6 @@ function randomiseHarvardResult (data) {                                    // r
 }
 
 // Metropolitan API //
-// CORS access issue from localhost but should function
-
-// function randomResult (objectIDs) {
-//     for ( i = 0; i < metTarget.length; i++ ) {                    // Loop the targets for the Met API
-//     var j = Math.floor(Math.random() * objectIDs.length);         // Pick a random item from the valid results array
-//     console.log(metObjUrl + objectIDs[j]);
-//     metTarget[i].setAttribute('src', metObjUrl + objectIDs[j]);   // Apply the random image from the valid results array to each div
-//     }
-// }   
-
-// function metSearch () {
-//     fetch(metUrl + imgCheck)
-//         .then(function (response) { return response.json(); })
-//         .then(randomResult(data.objectIDs));
-// }
 
 // first API call that resolves Name searches (such as sunflowers) and finds all relevant Met Museum ObjectIDs
 function metSearch (element) {
@@ -123,18 +108,16 @@ function metSearch (element) {
     fetch(metUrl + metQueries + imgCheck) 
         .then(function (response) { return response.json(); })
         .then(function (data) {
-            randomResult(data.objectIDs, element);
+            // console.log(data);
+            
+            function randomResult (objectIDs, element, data) {
+                    var j = Math.floor(Math.random() * objectIDs.length);
+                    // console.log(j);
+                    
+                    metObjSearch(data.objectIDs[j], element);    
+            }
+            randomResult(data.objectIDs, element, data);
         })
-}
-
-//selects a random ObjectID from the array of ObjectIDs
-function randomResult (objectIDs, element) {
-    for ( i = 0; i < metTarget.length; i++ ) {
-        var j = Math.floor(Math.random() * objectIDs.length);
-        console.log(j);
-        metObjSearch(j, element);
-
-    }
 }
 
 // 2nd API call that gets all the details of the Object ID, including image
@@ -149,7 +132,7 @@ function metObjSearch (objectID, element) {
             }        
         })
         .then(function (data) {
-            console.log(data);
+            // console.log(data);
             var dataValidate = data.primaryImageSmall;
 
             if (dataValidate === "") {                                  // if randomised object has no image, it restarts the API call.
