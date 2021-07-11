@@ -1,11 +1,13 @@
 // LocalStorage Functionality
 if (localStorage.getItem("choices") == null) {                    // Check for locally stored case data
     var choices = [];                                             // IF none is found create the empty Object
+
 } else { var choices = localStorage.getItem("choices"); // IF cases are found then fetch the data and PARSE it back into the Object
 }
 
 // Save checked items to local storage for import to fetch() call
 function saveUserChoices () {
+  
     checkChecks("metChoices");
     checkChecks("harvardChoices");
     checkChecks("colorChoices");

@@ -1,142 +1,286 @@
 *,
 *::before,
 *::after {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 :root {
-    /* Dark Mode */
-    --darkBG: #111111;
-    /* Light Mode */
-    --lightBG: #999999;
-    --limeGreen: #69b00b;
-    --rose: #b00b69;
-    --blueGrey: #00334d;
-    --midTeal: #77b2d9;
-    --black: #000000;
-    --white: #fff;
+  --darkBG: #111111;
+  --lightBG: #999999;
+  --black: #000000;
+  --white: #fff;
+  --darkOrange: #e5834d;
+  --lightOrange: #eca265;
+  --cream: #fff4e7;
+  --palePink: #ea8ea1;
+  --peachPink: #d6646f;
+  --mauve: #ac6ab9;
+  --limeGreen: #69b00b;
+  --rose: #b00b69;
+  --darkGrey: #696969;
+  --moreMauve: #ab69ba;
+  --blueGrey: #00334d;
+  --tequilaSunrise: #d82929;
+  --orange: #fb8100;
+  --custard: #ffc14a;
+  --lemonade: #ece4c0;
+  --mint: #77d9d9;
+  --paleTeal: #77c5d9;
+  --midTeal: #77b2d9;
+  --palePurple: #779ed9;
+  --purple: #778bd9;
+  --eggwhite: #f8e6bd;
+  --mustard: #ffcf00;
+  --darkPeach: #f37852;
+  --fire: #f93900;
+  --chocolate: #5c2604;
+  --brunswickGreen: #133412;
+  --paleMushroom: #dac1c3;
+  --mossGreen: #497529;
+  --grassGreen: #5f9422;
+  --greyGreen: #7d8078;
+  --oldBlue: #328bc1;
+  --brickRed: #c74e4e;
+  --pineapple: #ffdb6c;
+  --avocado: #7cd47d;
+  --swissMushroom: #9c6464;
+  --paleGrey: #f5f5f5;
+  --primaryBlue: #0000ff;
+  --primaryRed: #ff0000;
+  --classicGreen: #077909;
+  --primaryYellow: #e6e600;
+  font-size: 15px;
 }
 
 body {
-    font-family: 'Philosopher', sans-serif;
-    margin: 0;
-    background-color: var(--white);
-    line-height: 1.4;
-    text-align: center;
+  font-family: "Philosopher", sans-serif;
+  margin: 0;
+  background-color: var(--white);
+  line-height: 1.4;
+  text-align: center;
 }
 
 .flexContainer {
-    display: flex;
-    flex-direction: column;
-    margin: 0px 10%;
+  display: flex;
+  flex-direction: column;
+  margin: 0px 10%;
 }
 
 h1 {
-    text-align: center;
-    margin-top: 20px;
-    font-size: 3.0rem;
-    color: var(--limeGreen);
-    line-height: 2.0;
+  text-align: center;
+  margin-top: 20px;
+  font-size: 3rem;
+  color: var(--limeGreen);
+  line-height: 2;
 }
 
 h2 {
-    text-align: left;
-    margin: 5px;
-    font-size: 1.6rem;
-    color: var(--midTeal);
-    line-height: 1.2;
+  text-align: left;
+  margin: 5px;
+  font-size: 1.6rem;
+  color: var(--midTeal);
+  line-height: 1.2;
+}
+
+h3 {
+  font-size: 2.75rem;
+  color: var(--mauve);
+  line-height: 1.5;
+  margin-top: 30px;
 }
 
 h4 {
-    font-size: 1.0rem;
-    color: var(--blueGrey);
-    line-height: 1.5;
-    margin-top: 55px;
+  font-size: 1rem;
+  color: var(--blueGrey);
+  line-height: 1.5;
+  margin-top: 55px;
 }
 
 p {
-    font-size: 1.5rem;
-    color: var(--black);
-    line-height: 1.5;
-    margin: 0 50px;
+  font-size: 1.5rem;
+  color: var(--black);
+  line-height: 1.5;
+  margin: 0 50px;
 }
 
 textarea {
-    align-self: center;
-    margin-top: 20px;
-    width: 40%;
+  align-self: center;
+  margin-top: 20px;
+  width: 40%;
 }
 
 button {
-    align-self: center;
-    margin-top: 20px;
-    padding: 15px;
-    width: 10%;
+  align-self: center;
+  margin-top: 20px;
+  padding: 15px;
+  width: 10%;
 }
 
 div {
-    align-self: center;
-    margin-top: 20px;
+  align-self: center;
+  margin-top: 20px;
 }
 
 img {
-    max-width: 100%;
+  max-width: 100%;
 }
 
 /* Three equal columns for search/choice sections */
 .column {
-    float: left;
-    width: 30%;
-    padding: 15px;
-    margin: 5px 5px 100px 5px;
-    text-align: left;
-    border: 2px solid var(--black);
-    border-radius: 5px;
+  float: left;
+  width: 30%;
+  padding: 15px;
+  margin: 5px 5px 100px 5px;
+  text-align: left;
+  border: 2px solid var(--black);
+  border-radius: 5px;
 }
 
-.row:after {
-    content: "";
-    display: table;
-    clear: both;
+.row::after {
+  content: "";
+  display: table;
+  clear: both;
 }
 
 /* Responsive layout - makes the three columns stack on top of each other on smaller screens */
-@media screen and (max-width:600px) {
-    .column {
-        width: 100%;
-    }
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+  }
 }
 
 .footer {
-    background-color: var(--rose);
-    color: var(--white);
-    font-size: 1.0rem;
-    text-align: center;
-    padding: 15px;
-    margin-top: 5px;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+  background-color: var(--rose);
+  color: var(--white);
+  font-size: 1rem;
+  text-align: center;
+  padding: 15px;
+  margin-top: 5px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
 
+.footer-3 {
+  background-color: var(--mauve);
+  color: var(--blueGrey);
+  font-size: 1rem;
+  text-align: center;
+  padding: 15px;
+  margin-top: 5px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
 
+#chosen-card-1 {
+  display: block;
+  position: relative;
+  padding-left: 5px;
+  margin-bottom: 12px;
+  width: 30%;
+  float: left;
+  text-align: left;
+  margin: 2px 5px 100px 5px;
+  border: 2px solid var(--black);
+  border-radius: 5px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
 
+#chosen-card-2 {
+  display: block;
+  position: relative;
+  padding-left: 5px;
+  margin-bottom: 12px;
+  width: 55%;
+  height: auto;
+  float: left;
+  margin: 2px 5px 100px 5px;
+  border: 2px solid var(--black);
+  border-radius: 5px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
 
+.gallery {
+  margin: 10px;
+  float: left;
+}
 
+#art-image {
+  width: 55%;
+  height: auto;
+}
 
+/* Flex Mosaic Testing */
+/* Padding Y | X */
 
+#divINJ {
+  display: flex;
+  flex-direction: row;
+  max-width: 100%;
+  border: 5px solid hotpink;
+  padding: 10px;
+}
 
+div {
+  /* border: 2px solid red; */
+  /* margin: 2px; */
+  justify-content: space-evenly;
+}
 
+/* .div1 {
+    padding: 3rem 2rem;
+    align-self: flex-start;
+} */
 
+.div2 {
+  /* border: 2px solid blue; */
+  display: flex;
+  flex-direction: column;
+}
 
+/* .div3 {
+    padding: 1.5rem 2rem;
+    align-self: flex-start;
+}
 
+.div4 {
+    padding: 1.5rem 2rem;
+    align-self: flex-start;
+} */
 
+/* .div5 {
+    padding: 3rem 2rem;
+    align-self: flex-start;
+} */
 
+.div6 {
+  /* border: 2px solid green; */
+  display: flex;
+  flex-direction: column;
+  /* align-self: flex-start; */
+}
 
+/* .div7 {
+    padding: 1rem 1rem;
+    align-self: flex-start;
+}
 
+.div8 {
+    padding: 1rem 1rem;
+    align-self: flex-start;
+}
 
-
-
+.div9 {
+    padding: 1rem 1rem;
+    align-self: flex-start;
+} */
 
 /* COLOR PALETTES: */
 /* Set these 8 color palette choices as hidden until selected, for example: */
@@ -147,166 +291,166 @@ img {
 
 /* Color palette sourced from: https://www.color-hex.com/color-palette/110273 - Dusty Sunset Pride Color Palette */
 .dusty-sunset {
-    --darkOrange: #e5834d;
-    --lightOrange: #eca265;
-    --cream: #fff4e7;
-    --palePink: #ea8ea1;
-    --peachPink: #d6646f;
+  --darkOrange: #e5834d;
+  --lightOrange: #eca265;
+  --cream: #fff4e7;
+  --palePink: #ea8ea1;
+  --peachPink: #d6646f;
 }
 
 /* Color palette sourced from: https://www.color-hex.com/color-palette/110961 - Weirdos Color Palette */
 .weirdos {
-    --mauve: #ac6ab9;
-    --limeGreen: #69b00b;
-    --rose: #b00b69;
-    --darkGrey: #696969;
-    --moreMauve: #696969;
+  --mauve: #ac6ab9;
+  --limeGreen: #69b00b;
+  --rose: #b00b69;
+  --darkGrey: #696969;
+  --moreMauve: #ab69ba;
 }
 
 /* Color palette sourced from: https://www.color-hex.com/color-palette/110962 - Summer Harmony Color Palette */
 .summer-harmony {
-    --blueGrey: #00334d;
-    --tequilaSunrise: #d82929;
-    --orange: #fb8100;
-    --custard: #ffc14a;
-    --lemonade: #ece4c0;
+  --blueGrey: #00334d;
+  --tequilaSunrise: #d82929;
+  --orange: #fb8100;
+  --custard: #ffc14a;
+  --lemonade: #ece4c0;
 }
 
 /* Color palette sourced from: https://www.color-hex.com/color-palette/110932 - Deep Sea Baby Color Palette */
 .deep-sea-baby {
-    --mint: #77d9d9;
-    --paleTeal: #77c5d9;
-    --midTeal: #77b2d9;
-    --palePurple: #779ed9;
-    --purple: #778bd9;
+  --mint: #77d9d9;
+  --paleTeal: #77c5d9;
+  --midTeal: #77b2d9;
+  --palePurple: #779ed9;
+  --purple: #778bd9;
 }
 
 /* Color palette sourced from: https://www.color-hex.com/color-palette/110982 - Legacy of Fire Color Palette */
 .legacy-of-fire {
-    --eggwhite: #f8e6bd;
-    --mustard: #ffcf00;
-    --darkPeach: #f37852;
-    --fire: #f93900;
-    --chocolate: #5c2604;
+  --eggwhite: #f8e6bd;
+  --mustard: #ffcf00;
+  --darkPeach: #f37852;
+  --fire: #f93900;
+  --chocolate: #5c2604;
 }
 
 /* Color palette sourced from: https://www.color-hex.com/color-palette/110965 - Lost River Color Palette */
 .lost-river {
-    --brunswickGreen: #133412;
-    --paleMushroom: #dac1c3;
-    --mossGreen: #497529;
-    --grassGreen: #5f9422;
-    --greyGreen: #7d8078;
+  --brunswickGreen: #133412;
+  --paleMushroom: #dac1c3;
+  --mossGreen: #497529;
+  --grassGreen: #5f9422;
+  --greyGreen: #7d8078;
 }
 
 /* Color palette sourced from: https://www.color-hex.com/color-palette/111040 - Othello Costumes Color Palette */
 .othello-costumes {
-    --oldBlue: #328bc1;
-    --brickRed: #c74e4e;
-    --pineapple: #ffdb6c;
-    --avocado: #7cd47d;
-    --swissMushroom: #9c6464;
+  --oldBlue: #328bc1;
+  --brickRed: #c74e4e;
+  --pineapple: #ffdb6c;
+  --avocado: #7cd47d;
+  --swissMushroom: #9c6464;
 }
 
 /* Color palette sourced from: https://www.color-hex.com/color-palette/110677 - Hubitat Dashboards Color Palette */
 .hubitat {
-    --paleGrey: #f5f5f5;
-    --primaryBlue: #0000ff;
-    --primaryRed: #ff0000;
-    --classicGreen: #077909;
-    --primaryYellow: #e6e600;
+  --paleGrey: #f5f5f5;
+  --primaryBlue: #0000ff;
+  --primaryRed: #ff0000;
+  --classicGreen: #077909;
+  --primaryYellow: #e6e600;
 }
 
 /* CSS FOR GO BUTTON FOR FULL SELECTION: */
 #goBtn {
-    background-color: var(--rose);
-    color: var(--white);
-    padding: 10px;
-    width: 100px;
-    align-self: right;
-    font-size: 2.0rem;
-    line-height: 2.0;
-    border: 2px solid var(--black);
-    border-radius: 5px;
-    cursor: pointer;
+  background-color: var(--rose);
+  color: var(--white);
+  padding: 10px;
+  width: 100px;
+  align-self: right;
+  font-size: 2rem;
+  line-height: 2;
+  border: 2px solid var(--black);
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 #goBtn:hover,
 #goBtn:focus {
-    background-color: var(--limeGreen);
+  background-color: var(--limeGreen);
 }
 
 /* CSS FOR CHECK BOX SELECTIONS: */
 .container {
-    display: block;
-    position: relative;
-    padding-left: 15px;
-    margin-bottom: 12px;
-    cursor: pointer;
-    font-size: 1.2rem;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+  display: block;
+  position: relative;
+  padding-left: 15px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 /* Hide the browser's default check box */
 .container input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
 }
 
 /* Create a custom check box */
 .checkmark {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 25px;
-    width: 25px;
-    margin-right: 50px;
-    background-color: var(--white);
-    padding: 5px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  margin-right: 50px;
+  background-color: var(--white);
+  padding: 5px;
 }
 
 label {
-    margin-left: 10px;
-    padding-left: 10x;
-    width: auto;
-    display: inline;
+  margin-left: 10px;
+  padding-left: 10x;
+  width: auto;
+  display: inline;
 }
 
 /* On mouse-over, add a rose background color */
-.container:hover input~.checkmark {
-    background-color: var(--rose);
+.container:hover input ~ .checkmark {
+  background-color: var(--rose);
 }
 
 /* When the check box is checked, add a blue background */
-.container input:checked~.checkmark {
-    background-color: var(--blueGrey);
+.container input:checked ~ .checkmark {
+  background-color: var(--blueGrey);
 }
 
 /* Create the indicator (the tick - hidden when not checked) */
 .checkmark:after {
-    content: "";
-    position: absolute;
-    display: none;
+  content: "";
+  position: absolute;
+  display: none;
 }
 
 /* Show the indicator (tick) when checked */
-.container input:checked~.checkmark:after {
-    display: block;
+.container input:checked ~ .checkmark:after {
+  display: block;
 }
 
 /* Style the indicator (tick) */
 .container .checkmark:after {
-    left: 9px;
-    top: 5px;
-    width: 5px;
-    height: 10px;
-    border: solid white;
-    border-width: 0 3px 3px 0;
-    -webkit-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    transform: rotate(45deg);
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
 }
