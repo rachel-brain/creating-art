@@ -78,7 +78,7 @@ h2 {
   text-align: left;
   margin: 5px;
   font-size: 1.6rem;
-  color: var(--midTeal);
+  color: var(--orange);
   line-height: 1.2;
 }
 
@@ -108,6 +108,14 @@ p {
   color: var(--black);
   line-height: 1.5;
   margin: 0 50px;
+}
+
+#logo-image {
+  display: inline;
+  float: left;
+  width: 200px;
+  height: auto;
+  margin: 5px 10px;
 }
 
 #page-link {
@@ -183,7 +191,7 @@ img {
 }
 
 .footer-3 {
-  background-color: var(--mauve);
+  background-color: var(--oldBlue);
   color: var(--blueGrey);
   font-size: 1rem;
   text-align: center;
@@ -304,12 +312,6 @@ div {
 } */
 
 /* COLOR PALETTES: */
-/* Set these 8 color palette choices as hidden until selected, for example: */
-/* dustySunsetEl.classList.add("hide"); */
-/* dustySunsetEl.classList.remove("hide"); */
-/* Jesse suggested: */
-/* Function (border/accent/background) - Class (Legacy of Fire etc) */
-
 /* Color palette sourced from: https://www.color-hex.com/color-palette/110273 - Dusty Sunset Pride Color Palette */
 .dusty-sunset {
   --darkOrange: #e5834d;
@@ -461,12 +463,12 @@ label {
 }
 
 /* On mouse-over, add a rose background color */
-.container:hover input ~ .checkmark {
+.container:hover input~.checkmark {
   background-color: var(--rose);
 }
 
 /* When the check box is checked, add a blue background */
-.container input:checked ~ .checkmark {
+.container input:checked~.checkmark {
   background-color: var(--blueGrey);
 }
 
@@ -478,7 +480,7 @@ label {
 }
 
 /* Show the indicator (tick) when checked */
-.container input:checked ~ .checkmark:after {
+.container input:checked~.checkmark:after {
   display: block;
 }
 
