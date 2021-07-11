@@ -110,7 +110,6 @@ p {
   margin: 0 50px;
 }
 
-
 #page-link {
   display: block;
   position: relative;
@@ -121,7 +120,7 @@ p {
 li {
   display: inline;
   border: 1px solid var(--black);
-  line-height: 1.0;
+  line-height: 1;
   font-size: 15px;
 }
 
@@ -402,6 +401,25 @@ div {
   background-color: var(--limeGreen);
 }
 
+/* CSS FOR SEARCH HISTORY BUTTON FOR FULL SELECTION: */
+#searchHistory {
+  background-color: var(--rose);
+  color: var(--white);
+  padding: 10px;
+  width: 300px;
+  align-self: right;
+  font-size: 2rem;
+  line-height: 2;
+  border: 2px solid var(--black);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#searchHistory:hover,
+#searchHistory:focus {
+  background-color: var(--limeGreen);
+}
+
 /* CSS FOR CHECK BOX SELECTIONS: */
 .container {
   display: block;
@@ -443,12 +461,12 @@ label {
 }
 
 /* On mouse-over, add a rose background color */
-.container:hover input~.checkmark {
+.container:hover input ~ .checkmark {
   background-color: var(--rose);
 }
 
 /* When the check box is checked, add a blue background */
-.container input:checked~.checkmark {
+.container input:checked ~ .checkmark {
   background-color: var(--blueGrey);
 }
 
@@ -460,7 +478,7 @@ label {
 }
 
 /* Show the indicator (tick) when checked */
-.container input:checked~.checkmark:after {
+.container input:checked ~ .checkmark:after {
   display: block;
 }
 

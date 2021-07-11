@@ -6,8 +6,20 @@
 
 .flex-container {
   display: flex;
-  width: 100%;
-  height: 100%;
+}
+
+.history-columns {
+  margin-bottom: 5px;
+  margin-right: 5px;
+  flex: 1 1 auto;
+  flex-direction: column;
+  height: 100px;
+  width: 100px;
+}
+
+.history-image {
+  flex: 0 1 100px;
+  border: 5px solid black;
 }
 
 .flex-container.columns {
@@ -33,7 +45,7 @@
 }
 
 /* .flex-container .row {
-} */
+  } */
 
 .row {
   flex: 1 1 auto;
@@ -76,12 +88,4 @@
 
 .h {
   background: grey;
-}
-
-/* images that cover over the div container */
-
-img {
-  width:100%;
-  height:100%;
-  object-fit: cover;
 }
