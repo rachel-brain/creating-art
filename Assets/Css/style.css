@@ -96,11 +96,33 @@ h4 {
   margin-top: 55px;
 }
 
+#error1,
+#error2,
+#error3 {
+  color: var(--primaryRed);
+  display: hidden;
+}
+
 p {
   font-size: 1.5rem;
   color: var(--black);
   line-height: 1.5;
   margin: 0 50px;
+}
+
+
+#page-link {
+  display: block;
+  position: relative;
+  float: right;
+  margin-bottom: 50px;
+}
+
+li {
+  display: inline;
+  border: 1px solid var(--black);
+  line-height: 1.0;
+  font-size: 15px;
 }
 
 textarea {
@@ -421,12 +443,12 @@ label {
 }
 
 /* On mouse-over, add a rose background color */
-.container:hover input ~ .checkmark {
+.container:hover input~.checkmark {
   background-color: var(--rose);
 }
 
 /* When the check box is checked, add a blue background */
-.container input:checked ~ .checkmark {
+.container input:checked~.checkmark {
   background-color: var(--blueGrey);
 }
 
@@ -438,7 +460,7 @@ label {
 }
 
 /* Show the indicator (tick) when checked */
-.container input:checked ~ .checkmark:after {
+.container input:checked~.checkmark:after {
   display: block;
 }
 
@@ -453,4 +475,204 @@ label {
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
+}
+
+#color-1 {
+  background-color: var(--darkOrange);
+  color: var(--darkOrange);
+}
+
+#color-2 {
+  background-color: var(--lightOrange);
+  color: var(--lightOrange);
+}
+
+#color-3 {
+  background-color: var(--cream);
+  color: var(--cream);
+}
+
+#color-4 {
+  background-color: var(--palePink);
+  color: var(--palePink);
+}
+
+#color-5 {
+  background-color: var(--peachPink);
+  color: var(--peachPink);
+}
+
+#color-6 {
+  background-color: var(--mauve);
+  color: var(--mauve);
+}
+
+#color-7 {
+  background-color: var(--limeGreen);
+  color: var(--limeGreen);
+}
+
+#color-8 {
+  background-color: var(--rose);
+  color: var(--rose);
+}
+
+#color-9 {
+  background-color: var(--darkGrey);
+  color: var(--darkGrey);
+}
+
+#color-10 {
+  background-color: var(--moreMauve);
+  color: var(--moreMauve);
+}
+
+#color-11 {
+  background-color: var(--blueGrey);
+  color: var(--blueGrey);
+}
+
+#color-12 {
+  background-color: var(--tequilaSunrise);
+  color: var(--tequilaSunrise);
+}
+
+#color-13 {
+  background-color: var(--orange);
+  color: var(--orange);
+}
+
+#color-14 {
+  background-color: var(--custard);
+  color: var(--custard);
+}
+
+#color-15 {
+  background-color: var(--lemonade);
+  color: var(--lemonade);
+}
+
+#color-16 {
+  background-color: var(--mint);
+  color: var(--mint);
+}
+
+#color-17 {
+  background-color: var(--paleTeal);
+  color: var(--paleTeal);
+}
+
+#color-18 {
+  background-color: var(--midTeal);
+  color: var(--midTeal);
+}
+
+#color-19 {
+  background-color: var(--palePurple);
+  color: var(--palePurple);
+}
+
+#color-20 {
+  background-color: var(--purple);
+  color: var(--purple);
+}
+
+#color-21 {
+  background-color: var(--eggwhite);
+  color: var(--eggwhite);
+}
+
+#color-22 {
+  background-color: var(--mustard);
+  color: var(--mustard);
+}
+
+#color-23 {
+  background-color: var(--darkPeach);
+  color: var(--darkPeach);
+}
+
+#color-24 {
+  background-color: var(--fire);
+  color: var(--fire);
+}
+
+#color-25 {
+  background-color: var(--chocolate);
+  color: var(--chocolate);
+}
+
+#color-26 {
+  background-color: var(--brunswickGreen);
+  color: var(--brunswickGreen);
+}
+
+#color-27 {
+  background-color: var(--paleMushroom);
+  color: var(--paleMushroom);
+}
+
+#color-28 {
+  background-color: var(--mossGreen);
+  color: var(--mossGreen);
+}
+
+#color-29 {
+  background-color: var(--grassGreen);
+  color: var(--grassGreen);
+}
+
+#color-30 {
+  background-color: var(--greyGreen);
+  color: var(--greyGreen);
+}
+
+#color-31 {
+  background-color: var(--oldBlue);
+  color: var(--oldBlue);
+}
+
+#color-32 {
+  background-color: var(--brickRed);
+  color: var(--brickRed);
+}
+
+#color-33 {
+  background-color: var(--pineapple);
+  color: var(--pineapple);
+}
+
+#color-34 {
+  background-color: var(--avocado);
+  color: var(--avocado);
+}
+
+#color-35 {
+  background-color: var(--swissMushroom);
+  color: var(--swissMushroom);
+}
+
+#color-36 {
+  background-color: var(--paleGrey);
+  color: var(--paleGrey);
+}
+
+#color-37 {
+  background-color: var(--primaryBlue);
+  color: var(--primaryBlue);
+}
+
+#color-38 {
+  background-color: var(--primaryRed);
+  color: var(--primaryRed);
+}
+
+#color-39 {
+  background-color: var(--classicGreen);
+  color: var(--classicGreen);
+}
+
+#color-40 {
+  background-color: var(--primaryYellow);
+  color: var(--primaryYellow);
 }
