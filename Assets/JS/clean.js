@@ -102,14 +102,63 @@ function harvardSearch () {
 //         });
 // }
 
-// OFFLINE Met API //
-// function randomResult () {
+function harvardSearch () {
+    fetch(harvardUrl + harvardKey)
+        .then(function (response) { return response.json(); })
+        .then(function (data) {
+            var dataValidate = data.records[2].primaryimageurl;   // so far the API call is static, we need to make it dynamic, so it chooses random pictures every single time
+            big1.setAttribute("src", dataValidate);
+        })
+}
+
+// Metropolitan API //
+// CORS access issue from localhost but should function
+
+// function randomResult (objectIDs) {
 //     for ( i = 0; i < metTarget.length; i++ ) {                    // Loop the targets for the Met API
-//     var j = Math.floor(Math.random() * metData.length);         // Pick a random item from the valid results array
-//     metTarget[i].setAttribute('src', metObjUrl + metData[j]);   // Apply the random image from the valid results array to each div
+//     var j = Math.floor(Math.random() * objectIDs.length);         // Pick a random item from the valid results array
+//     console.log(metObjUrl + objectIDs[j]);
+//     metTarget[i].setAttribute('src', metObjUrl + objectIDs[j]);   // Apply the random image from the valid results array to each div
 //     }
 // }   
 
+// function metSearch () {
+//     fetch(metUrl + imgCheck)
+//         .then(function (response) { return response.json(); })
+//         .then(randomResult(data.objectIDs));
+// }
+
+// first API call that resolves Name searches (such as sunflowers) and finds all relevant Met Museum ObjectIDs
+function metSearch () {
+    fetch("https://collectionapi.metmuseum.org/public/collection/v1/search?q=sunflowers" + imgCheck) // static at the moment, needs to adjust "q="
+        .then(function (response) { return response.json(); })
+        .then(function (data) {
+            randomResult(data.objectIDs);
+        })
+}
+
+//selects a random ObjectID from the array of ObjectIDs
+function randomResult (objectIDs) {
+    for ( i = 0; i < metTarget.length; i++ ) {
+        var j = Math.floor(Math.random() * objectIDs.length);
+
+        metObjSearch(j);
+
+    }
+}
+
+// 2nd API call that gets all the details of the Object ID, including image
+function metObjSearch (objectID) {
+    var URL = metObjUrl + objectID.toString();
+    fetch(URL)
+        .then(function (response) { return response.json(); })
+        .then(function (data) {
+            console.log(data);
+            var dataValidate = data.primaryImageSmall;
+            big2.setAttribute("src", dataValidate);
+
+        })
+}
 
 // Colours API //
 // CORS access issue from localhost but should function
@@ -142,7 +191,6 @@ function colorApiInjection () {
 function init () {
     harvardSearch();
     metSearch();
-    // randomResult();
     colorApiInjection();
     // colorApiSearch();
 }
