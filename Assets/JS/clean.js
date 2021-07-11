@@ -63,21 +63,43 @@ var clHEX = [
 ];
 
 // Harvard API //
-// Current hard targets one div (will fix)
 
-// function harvardSearch () { 
-//     for ( i=0; i < harvardTarget.length; i++ ) {
-//     fetch(harvardUrl+harvardKey)
+function harvardSearch () { 
+    for ( i=0; i < harvardTarget.length; i++ ) {
+    fetch(harvardUrl+harvardKey)
+        .then(function (response) { return response.json(); })
+        .then(function (data) {
+            var dataValidate = data.records[0].primaryimageurl
+            console.log(dataValidate);
+            if (dataValidate == undefined) {
+                harvardSearch();
+            } else
+                harvardTarget[0].setAttribute('src', data.records[0].primaryimageurl);
+        }
+    )}
+}
+
+// Metropolitan API //
+
+// function randomResult (data) {
+//     var url = data.objectIDs
+//         metTarget.forEach(function (target, i) {
+//             var j = Math.floor(Math.random() * url.length);
+//             fetch(metObjUrl + url[j])
+//                 .then(function (response) { return response.json(); })
+//                 .then(function (data) { 
+//                     console.log(i);
+//                     metTarget[i].setAttribute('src', data.primaryImage); });
+//         })
+
+//     }
+
+// function metSearch () {
+//     fetch(metUrl + "?q=sunflowers" + imgCheck)
 //         .then(function (response) { return response.json(); })
 //         .then(function (data) {
-//             var dataValidate = data.records[0].primaryimageurl
-//             console.log(dataValidate);
-//             if (dataValidate == undefined) {
-//                 harvardSearch();
-//             } else
-//                 harvardTarget[0].setAttribute('src', data.records[0].primaryimageurl);
-//         }
-//     )}
+//             randomResult(data);
+//         });
 // }
 
 function harvardSearch () {
@@ -157,10 +179,8 @@ function metObjSearch (objectID) {
 
 // OFFLINE Colours API //
 function colorApiInjection () {
-    data.map(function(item, index) { // Map creates a concurrent loop
+    colData.map(function(item, index) { // Map creates a concurrent loop
         for ( i = 0; i < colorsTarget.length; i++ ) {
-            // console.log(item);
-            // console.log(item.imageUrl);
             colorsTarget[i].setAttribute('src', item.imageUrl.replace('http', 'https'))
         }
     }) 
@@ -243,3 +263,25 @@ init();
 
 // Image:
 // primaryImage
+
+
+
+
+// function randomResult (data) {
+//     var url = data.objectIDs
+//     for ( i = 0; i < metTarget.length; i++ ) {                    // Loop the targets for the Met API
+//     var j = Math.floor(Math.random() * url.length);         // Pick a random item from the valid results array
+//     var newUrl = metObjUrl + url[j];
+//     metSearch2(newUrl);
+//     }
+// }   
+
+// function metSearch2 (newUrl) {
+//     fetch(newUrl)
+//         .then(function (response) { return response.json(); })
+//         .then(function (data) {
+//             for ( i = 0; i < metTarget.length; i++ ) {
+//                 metTarget[i].setAttribute('src', data.primaryImage);
+//             }
+//         });
+// }
