@@ -81,26 +81,26 @@ function harvardSearch () {
 
 // Metropolitan API //
 
-function randomResult (data) {
-    var url = data.objectIDs
-        metTarget.forEach(function (target, i) {
-            var j = Math.floor(Math.random() * url.length);
-            fetch(metObjUrl + url[j])
-                .then(function (response) { return response.json(); })
-                .then(function (data) { 
-                    console.log(i);
-                    metTarget[i].setAttribute('src', data.primaryImage); });
-        })
+// function randomResult (data) {
+//     var url = data.objectIDs
+//         metTarget.forEach(function (target, i) {
+//             var j = Math.floor(Math.random() * url.length);
+//             fetch(metObjUrl + url[j])
+//                 .then(function (response) { return response.json(); })
+//                 .then(function (data) { 
+//                     console.log(i);
+//                     metTarget[i].setAttribute('src', data.primaryImage); });
+//         })
 
-    }
+//     }
 
-function metSearch () {
-    fetch(metUrl + "?q=sunflowers" + imgCheck)
-        .then(function (response) { return response.json(); })
-        .then(function (data) {
-            randomResult(data);
-        });
-}
+// function metSearch () {
+//     fetch(metUrl + "?q=sunflowers" + imgCheck)
+//         .then(function (response) { return response.json(); })
+//         .then(function (data) {
+//             randomResult(data);
+//         });
+// }
 
 // OFFLINE Met API //
 // function randomResult () {
