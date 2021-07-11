@@ -1,7 +1,6 @@
 .layout {
   width: 100%;
   height: 100%;
-  position: fixed;
 }
 
 .flex-container {
@@ -21,7 +20,7 @@ h1 {
   text-align: center;
   margin-top: 20px;
   font-size: 2rem;
-  color: #69b00b;
+  color: #000000;
 }
 
 p {
@@ -73,9 +72,9 @@ p {
   height: 100%;
 }
 
-.a {
+/* .a {
   background: red;
-}
+} */
 
 .b {
   background: blue;
@@ -85,17 +84,17 @@ p {
   background: orange;
 }
 
-.d {
+/* .d {
   background: yellow;
-}
+} */
 
-.e {
+/* .e {
   background: green;
-}
+} */
 
-.f {
+/* .f {
   background: brown;
-}
+} */
 
 .g {
   background: pink;
@@ -103,4 +102,29 @@ p {
 
 .h {
   background: grey;
+}
+
+img {
+  max-width: 95%;
+  max-height: 95%;
+  object-fit: scale-down;
+  overflow: scroll;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 50px;
+  
+}
+
+body {
+  height: 1360px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: scroll;
+
+}
+
+div {
+  border-radius: 50px;
 }
