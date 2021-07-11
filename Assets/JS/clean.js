@@ -31,12 +31,13 @@ var metUrl = "https://collectionapi.metmuseum.org/public/collection/v1/search";
 var metObjUrl = "https://collectionapi.metmuseum.org/public/collection/v1/objects/";
 var metImg = "?primaryImage";
 var imgCheck = "&hasImages=true";
+var metQueries = localStorage.getItem('metChecks'); 
 
 // Harvard Museum API
-var hAPI = "97a4196b-d37b-433b-bd93-476d81c28e29"
-var harvardKey = "&apikey=" + hAPI;
-var harvardUrl = "https://api.harvardartmuseums.org/object?q=hasimage=1"
-var medium = "&medium=wood"
+var harvardKey = "&apikey=97a4196b-d37b-433b-bd93-476d81c28e29"
+var harvardUrl = "https://api.harvardartmuseums.org/object?q="
+var hasImage = "&hasimage=1&size=30"
+var harvardQueries = localStorage.getItem('harvardChecks').replace("_", "+");
 
 // Colour Lovers API
 var clUrl = "http://www.colourlovers.com/api/patterns/";
@@ -64,21 +65,6 @@ var clHEX = [
 
 // Harvard API //
 
-function harvardSearch () { 
-    for ( i=0; i < harvardTarget.length; i++ ) {
-    fetch(harvardUrl+harvardKey)
-        .then(function (response) { return response.json(); })
-        .then(function (data) {
-            var dataValidate = data.records[0].primaryimageurl
-            console.log(dataValidate);
-            if (dataValidate == undefined) {
-                harvardSearch();
-            } else
-                harvardTarget[0].setAttribute('src', data.records[0].primaryimageurl);
-                localStorage.setItem('harvardTarget', JSON.stringify(data));    // Store full api object 
-        }
-    )}
-}
 
 // Metropolitan API //
 
@@ -104,13 +90,25 @@ function harvardSearch () {
 // }
 
 function harvardSearch () {
-    fetch(harvardUrl + harvardKey)
+    fetch(harvardUrl + harvardQueries + harvardKey + hasImage)
         .then(function (response) { return response.json(); })
         .then(function (data) {
-            var dataValidate = data.records[2].primaryimageurl;   // so far the API call is static, we need to make it dynamic, so it chooses random pictures every single time
-            big1.setAttribute("src", dataValidate);
+            // console.log(data);
+            var j = randomiseHarvardResult(data)
+            var dataValidate = data.records[j].primaryimageurl;   
+            if (dataValidate === null ) {                                   // if randomised object has no image, it restarts the API call.
+                harvardSearch()
+            } else {
+                big1.setAttribute("src", dataValidate);
+            }
             localStorage.setItem('harvardTarget', JSON.stringify(data));    // Store full api object 
         })
+}
+
+function randomiseHarvardResult (data) {                                    // random object function chooser
+    var j = Math.floor(Math.random() * data.records.length);
+    // console.log(j);
+    return j;
 }
 
 // Metropolitan API //
@@ -132,7 +130,8 @@ function harvardSearch () {
 
 // first API call that resolves Name searches (such as sunflowers) and finds all relevant Met Museum ObjectIDs
 function metSearch () {
-    fetch("https://collectionapi.metmuseum.org/public/collection/v1/search?q=sunflowers" + imgCheck) // static at the moment, needs to adjust "q="
+    console.log("https://collectionapi.metmuseum.org/public/collection/v1/search?q=" + metQueries + imgCheck)
+    fetch("https://collectionapi.metmuseum.org/public/collection/v1/search?q=" + metQueries + imgCheck) 
         .then(function (response) { return response.json(); })
         .then(function (data) {
             randomResult(data.objectIDs);
@@ -143,7 +142,7 @@ function metSearch () {
 function randomResult (objectIDs) {
     for ( i = 0; i < metTarget.length; i++ ) {
         var j = Math.floor(Math.random() * objectIDs.length);
-
+        console.log(j);
         metObjSearch(j);
 
     }
@@ -153,14 +152,25 @@ function randomResult (objectIDs) {
 function metObjSearch (objectID) {
     var URL = metObjUrl + objectID.toString();
     fetch(URL)
-        .then(function (response) { return response.json(); })
+        .then(function (response) {
+            if (response.status === 404) {                              //some objects return 404. this restarts the API call.
+                metSearch();
+            } else {
+                return response.json();
+            }        
+        })
         .then(function (data) {
             console.log(data);
             var dataValidate = data.primaryImageSmall;
-            big2.setAttribute("src", dataValidate);
+
+            if (dataValidate === "") {                                  // if randomised object has no image, it restarts the API call.
+                metSearch();
+            } else {
+                big2.setAttribute("src", dataValidate);
+            }
             localStorage.setItem('metTarget', JSON.stringify(data));    // Store full api object 
         })
-}
+    }
 
 // Colours API //
 // CORS access issue from localhost but should function
