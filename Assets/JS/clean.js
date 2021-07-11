@@ -51,6 +51,9 @@ var lostRiver = ["133412", "dac1c3", "497529", "5f9422", "7d8078"];
 var othelloCostumes = ["328bc1", "c74e4e", "ffdb6c", "7cd47d", "9c6464"];
 var hubitatDashboards = ["f5f5f5", "0000ff", "ff0000", "077909", "e6e600"];
 
+//Page 3 variable
+var previousImages = [];
+
 var clHEX = [
     dustySunset,
     weirdos,
@@ -190,11 +193,80 @@ function colorApiInjection () {
 }
 
 // Page3
+
+function saveToLocalStorage(event) {
+  //Get previously searched images and store in a variable
+  var previousImages = JSON.parse(
+    localStorage.getItem("previouslySearchedImages")
+  );
+
+  var selectedImage = event.target;
+  var imgURL = selectedImage.src;
+  var selectedImageId = selectedImage.id;
+
+  console.log("This is the id "+selectedImageId);
+
+  //Check if local storage has any previously searched images
+  //   if (previousImages !== null) {
+  //     for (var i = 0; i < previousImages.length; i++) {
+  //       getAndSetImage(previousImage[i]);
+  //     }
+  //   }
+  if ((imgURL !== null) || (imgURL !== undefined)) {
+    if (previousImages == null) {
+      previousImages = [];
+      previousImages.push(imgURL);
+      localStorage.setItem(
+        "previouslySearchedImages",
+        JSON.stringify(previousImages)
+      );
+
+      //calling Jesse's code (TO BE REVIEWED)
+if (selectedImageId === 
+    "big1"){
+      chosen('harvardTarget');
+    } else if (selectedImageId === "big2"){
+        chosen('metTarget');
+    }
+    } else if (previousImages !== null) {
+      //previousImages = JSON.parse(localStorage.getItem("previouslySearchedImages"));
+      var existsInStorage = findInStorage(previousImages, imgURL);
+      if (existsInStorage > 0) {
+        previousImages.push(imgURL);
+        localStorage.setItem(
+          "previouslySearchedImages",
+          JSON.stringify(previousImages)
+        );
+      }
+      if (selectedImageId === 
+        "big1"){
+          chosen('harvardTarget');
+        } else if (selectedImageId === "big2"){
+            chosen('metTarget');
+        }
+    }
+  }
+}
+
+// searches the image to see if it exists in the entries from the storage
+function findInStorage(previousImages, imgURL) {
+  for (var i = 0; i < previousImages.length; i++) {
+    if (imgURL === previousImages[i]) {
+      return -1;
+    }
+  }
+  return 1;
+}
+
+//AFsha: Updated replace with href, to allow for browswer back button to work
 function chosen(name) {
     var object = localStorage.getItem(name);
     localStorage.setItem('focusImage', object)
-    window.location.replace('./page3.html');
+    window.location.href = './page3.html';
 }
+
+//Event handler to check for click on image
+$("img").on("click", saveToLocalStorage);
 
 
 function init () {

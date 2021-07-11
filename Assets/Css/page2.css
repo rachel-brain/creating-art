@@ -17,6 +17,21 @@
   width: 100px;
 }
 
+h1 {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 2rem;
+  color: #69b00b;
+}
+
+p {
+  font-size: 1.5rem;
+  color: var(--black);
+  line-height: 1.5;
+  margin: 0 50px;
+  text-align: center;
+}
+
 .history-image {
   flex: 0 1 100px;
   border: 5px solid black;
