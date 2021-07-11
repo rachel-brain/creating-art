@@ -109,6 +109,7 @@ function harvardSearch () {
         .then(function (data) {
             var dataValidate = data.records[2].primaryimageurl;   // so far the API call is static, we need to make it dynamic, so it chooses random pictures every single time
             big1.setAttribute("src", dataValidate);
+            localStorage.setItem('harvardTarget', JSON.stringify(data));    // Store full api object 
         })
 }
 
@@ -188,6 +189,12 @@ function colorApiInjection () {
     }) 
 }
 
+// Page3
+function chosen(name) {
+    var object = localStorage.getItem(name);
+    localStorage.setItem('focusImage', object)
+    window.location.replace('./page3.html');
+}
 
 
 function init () {
