@@ -27,11 +27,11 @@ var colorsTarget = [
 ];
 
 // Metropolitan Museum API
-var metUrl = "https://collectionapi.metmuseum.org/public/collection/v1/search";
+var metUrl = "https://collectionapi.metmuseum.org/public/collection/v1/search?q=";
 var metObjUrl = "https://collectionapi.metmuseum.org/public/collection/v1/objects/";
 var metImg = "?primaryImage";
 var imgCheck = "&hasImages=true";
-var metQueries = localStorage.getItem('metChecks'); 
+var metQueries = localStorage.getItem('metChecks').replace("_", "+"); 
 
 // Harvard Museum API
 var harvardKey = "&apikey=97a4196b-d37b-433b-bd93-476d81c28e29"
@@ -131,7 +131,7 @@ function randomiseHarvardResult (data) {                                    // r
 // first API call that resolves Name searches (such as sunflowers) and finds all relevant Met Museum ObjectIDs
 function metSearch () {
     console.log("https://collectionapi.metmuseum.org/public/collection/v1/search?q=" + metQueries + imgCheck)
-    fetch("https://collectionapi.metmuseum.org/public/collection/v1/search?q=" + metQueries + imgCheck) 
+    fetch(metUrl + metQueries + imgCheck) 
         .then(function (response) { return response.json(); })
         .then(function (data) {
             randomResult(data.objectIDs);
