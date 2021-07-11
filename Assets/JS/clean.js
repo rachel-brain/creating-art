@@ -75,6 +75,7 @@ function harvardSearch () {
                 harvardSearch();
             } else
                 harvardTarget[0].setAttribute('src', data.records[0].primaryimageurl);
+                localStorage.setItem('harvardTarget', JSON.stringify(data));    // Store full api object 
         }
     )}
 }
@@ -156,7 +157,7 @@ function metObjSearch (objectID) {
             console.log(data);
             var dataValidate = data.primaryImageSmall;
             big2.setAttribute("src", dataValidate);
-
+            localStorage.setItem('metTarget', JSON.stringify(data));    // Store full api object 
         })
 }
 
@@ -182,6 +183,7 @@ function colorApiInjection () {
     colData.map(function(item, index) { // Map creates a concurrent loop
         for ( i = 0; i < colorsTarget.length; i++ ) {
             colorsTarget[i].setAttribute('src', item.imageUrl.replace('http', 'https'))
+            localStorage.setItem('colorsTarget' + i, JSON.stringify(item));    // Store full api object 
         }
     }) 
 }
