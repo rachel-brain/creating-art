@@ -36,8 +36,8 @@ Open the (index.html) page in your prefered browser to see the website showing a
 Once the (index.html) page in the prefered browser has opened, the user selects from a number of art styles/media/eras they are interested in plus a color palette and they submit their choices.  The user will be presented with a mosaic style page with a number of unique pieces of art.  The user can choose any of these to click through to a page showing them more information about the artist and the piece.  An additional page will show the user a history of their favourite pieces of art.
 
 ## Screenshot
-![Website Home](Assets/img/Homepage.png)
-![Search Results](Assets/img/Example-Search-Results.png)
+![Website Home](assets/img/Homepage.png)
+![Search Results](assets/img/Example-Search-Results.png)
 
 ## License
 The MIT License has been applied which can be seen in the source file at (LICENSE.txt).
