@@ -152,19 +152,19 @@ function getColor(data) {
     return data.name === colorSelected;
 }
 
-function colorInjection(data) {
-    var colorOne = data.value[0];
-    var colorTwo = data.value[1];
-    var colorThree = data.value[2];
-    var colorFour = data.value[3];
-    var colorFive = data.value[4];
+// function colorInjection(data) {
+//     var colorOne = data.value[0];
+//     var colorTwo = data.value[1];
+//     var colorThree = data.value[2];
+//     var colorFour = data.value[3];
+//     var colorFive = data.value[4];
 
-    aEl.setAttribute("style", "background:#" + colorOne);
-    dEl.setAttribute("style", "background:#" + colorThree);
-    eEl.setAttribute("style", "background:#" + colorFour);
-    fEl.setAttribute("style", "background:#" + colorFive);
-    eventEl.setAttribute("style", "background-image: linear-gradient(#" + colorTwo + ",#" + colorOne + ",#" + colorThree + ",#" + colorFour);
-}
+//     aEl.setAttribute("style", "background:#" + colorOne);
+//     dEl.setAttribute("style", "background:#" + colorThree);
+//     eEl.setAttribute("style", "background:#" + colorFour);
+//     fEl.setAttribute("style", "background:#" + colorFive);
+//     eventEl.setAttribute("style", "background-image: linear-gradient(#" + colorTwo + ",#" + colorOne + ",#" + colorThree + ",#" + colorFour);
+// }
 
 
 // OFFLINE Colours API //
@@ -208,10 +208,10 @@ function saveToLocalStorage(event) {
       );
 
       //calling Jesse's code (TO BE REVIEWED)
-if (selectedImageId === 
-    "big1"){
+if ((selectedImageId === 
+        "small1"||"big1"||"small2"||"small3"||"small4")){
       chosen('harvardTarget');
-    } else if (selectedImageId === "big2"){
+    } else if (selectedImageId === "big2"||"small5"||"small6"||"small7"||"small8"){
         chosen('metTarget');
     }
     } else if (previousImages !== null) {
@@ -224,10 +224,10 @@ if (selectedImageId ===
           JSON.stringify(previousImages)
         );
       }
-      if (selectedImageId === 
-        "big1"){
+      if ((selectedImageId === 
+        "small1"||"big1"||"small2"||"small3"||"small4")){
           chosen('harvardTarget');
-        } else if (selectedImageId === "big2"){
+        } else if (selectedImageId === "big2"||"small5"||"small6"||"small7"||"small8"){
             chosen('metTarget');
         }
     }
@@ -261,7 +261,7 @@ function init () {
     smallGroup2.forEach(metSearch);
     metSearch(big2);
     colorApiInjection();
-    colorInjection(clHEX.find(getColor));
+    // colorInjection(clHEX.find(getColor));
     // colorApiSearch();
 }
 
