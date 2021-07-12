@@ -42,21 +42,20 @@ Once the (index.html) page in the prefered browser has opened, the user selects 
 ## License
 The MIT License has been applied which can be seen in the source file at (LICENSE.txt).
 
-## Tests
-The main tests run were .... 
-
-
-
 ## URLs
 
-* The URL of the deployed application:
+- The URL of the deployed application:
 
-    https://rachel-brain.github.io/creating-art/
+  https://rachel-brain.github.io/creating-art/
 
-* The URL of the GitHub repository:
+- The URL of the GitHub repository:
 
-    https://github.com/rachel-brain/creating-art
+  https://github.com/rachel-brain/creating-art
 
-* The URL of the Kanban board of the Project:
+- The URL of the Presentation Deck:
+
+  https://docs.google.com/presentation/d/1CBc65BGruD7Ba4h0mdvst99Oacqpa-Bn1rDgeWW1MRo/edit?usp=sharing
+
+- The URL of the Kanban board of the Project:
 
     https://github.com/rachel-brain/creating-art/projects/1
