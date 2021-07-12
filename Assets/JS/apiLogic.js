@@ -77,14 +77,12 @@ var clHEX = [
 
 
 // Harvard API //
-
 function harvardSearch (element) {
     var name = element.id;
 
     fetch(harvardUrl + harvardQueries + harvardKey + hasImage)
         .then(function (response) { return response.json(); })
         .then(function (data) {
-            // console.log(data);
             var j = randomiseHarvardResult(data)
             var dataValidate = data.records[j].primaryimageurl;   
             if (dataValidate === null ) {                                   // if randomised object has no image, it restarts the API call.
@@ -98,23 +96,18 @@ function harvardSearch (element) {
 
 function randomiseHarvardResult (data) {                                    // random object function chooser
     var j = Math.floor(Math.random() * data.records.length);
-    // console.log(j);
     return j;
 }
 
 // Metropolitan API //
-
 // first API call that resolves Name searches (such as sunflowers) and finds all relevant Met Museum ObjectIDs
 function metSearch (element) {
-    console.log(metUrl + metQueries + imgCheck)
     fetch(metUrl + metQueries + imgCheck) 
         .then(function (response) { return response.json(); })
         .then(function (data) {
-            // console.log(data);
             
             function randomResult (objectIDs, element, data) {
                     var j = Math.floor(Math.random() * objectIDs.length);
-                    // console.log(j);
                     
                     metObjSearch(data.objectIDs[j], element);    
             }
@@ -135,7 +128,6 @@ function metObjSearch (objectID, element) {
             }        
         })
         .then(function (data) {
-            // console.log(data);
             var dataValidate = data.primaryImageSmall;
 
             if (dataValidate === "") {                                  // if randomised object has no image, it restarts the API call.
@@ -150,38 +142,18 @@ function metObjSearch (objectID, element) {
     }
 
 // Colours API //
-
 function getColor(data) {
     return data.name === colorSelected;
 }
-
-// function colorInjection(data) {
-//     var colorOne = data.value[0];
-//     var colorTwo = data.value[1];
-//     var colorThree = data.value[2];
-//     var colorFour = data.value[3];
-//     var colorFive = data.value[4];
-
-//     aEl.setAttribute("style", "background:#" + colorOne);
-//     dEl.setAttribute("style", "background:#" + colorThree);
-//     eEl.setAttribute("style", "background:#" + colorFour);
-//     fEl.setAttribute("style", "background:#" + colorFive);
-//     eventEl.setAttribute("style", "background-image: linear-gradient(#" + colorTwo + ",#" + colorOne + ",#" + colorThree + ",#" + colorFour);
-// }
-
 
 // OFFLINE Colours API //
 function colorApiInjection () {
     colData.map(function(item, index) { // Map creates a concurrent loop
         for ( i = 0; i < colorsTarget.length; i++ ) {
             colorsTarget[i].setAttribute('src', item.imageUrl.replace('http', 'https'))
-            // localStorage.setItem('colorsTarget' + i, JSON.stringify(item));    // Store full api object 
         }
     }) 
 }
-
-
-// Page3
 
 function saveToLocalStorage(event) {
   //Get previously searched images and store in a variable
@@ -193,14 +165,6 @@ function saveToLocalStorage(event) {
   var imgURL = selectedImage.src;
   var selectedImageId = selectedImage.id;
 
-  console.log("This is the id "+selectedImageId);
-
-  //Check if local storage has any previously searched images
-  //   if (previousImages !== null) {
-  //     for (var i = 0; i < previousImages.length; i++) {
-  //       getAndSetImage(previousImage[i]);
-  //     }
-  //   }
   if ((imgURL !== null) || (imgURL !== undefined)) {
     if (previousImages == null) {
       previousImages = [];
@@ -210,13 +174,13 @@ function saveToLocalStorage(event) {
         JSON.stringify(previousImages)
       );
 
-      //calling Jesse's code (TO BE REVIEWED)
-if ((selectedImageId === 
-        "small1"||"big1"||"small2"||"small3"||"small4")){
-      chosen('harvardTarget');
-    } else if (selectedImageId === "big2"||"small5"||"small6"||"small7"||"small8"){
-        chosen('metTarget');
-    }
+    if ((selectedImageId === 
+            "small1"||"big1"||"small2"||"small3"||"small4")){
+        chosen('harvardTarget');
+        } else if (selectedImageId === "big2"||"small5"||"small6"||"small7"||"small8"){
+            chosen('metTarget');
+        }
+
     } else if (previousImages !== null) {
       //previousImages = JSON.parse(localStorage.getItem("previouslySearchedImages"));
       var existsInStorage = findInStorage(previousImages, imgURL);
@@ -242,11 +206,10 @@ function findInStorage(previousImages, imgURL) {
   return 1;
 }
 
-//AFsha: Updated replace with href, to allow for browswer back button to work
 function chosen(name) {
     var object = localStorage.getItem(name);
     localStorage.setItem('focusImage', object)
-    window.location.href = './page3.html';
+    window.location.href = 'detailPage.html';
 }
 
 //Event handler to check for click on image
@@ -259,97 +222,6 @@ function init () {
     smallGroup2.forEach(metSearch);
     metSearch(big2);
     colorApiInjection();
-    // colorInjection(clHEX.find(getColor));
-    // colorApiSearch();
 }
 
 init();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// TODO:
-// HARVARD ART MUSEUMS API data call for page 3
-// Artist name:
-// records[0].people[0].name // eg. Honoré-Victorin Daumier or Lyonel Feininger
-
-// Artist nationality:
-// records[0].people[0].culture // eg. French or American
-
-// Title:
-// records[0].title // eg. Pickhardt Vol. IV: Charivari Lithographs by Daumier or Untitled
-
-// Circa:
-// records[0].dated // eg.1848 or 1940s-1950s
-
-// Technique:
-// records[0].technique // eg. Lithograph or Slide, 35 mm, black and white
-
-// About: Nothing?  May need to remove this section ...
-// ?????
-
-// Image:
-// records[0].images[0].baseimageurl
-// records[0].images[0].width // eg. 774
-// records[0].images[0].height // eg. 1024
-// Or ...
-// records[0].primaryimageurl
-
-
-
-// TODO:
-// MET MUSEUM API data call for page 3
-// Artist name:
-// artistDisplayName // eg. Kiyohara Yukinobu
-
-// Artist nationality:
-// artistNationality // eg. Japanese
-
-// Title:
-// title // eg. Quail and Millet
-
-// Circa:
-// objectDate // eg. late 17th century
-
-// Technique:
-// medium // eg. Hanging scroll; ink and color on silk
-
-// About: Nothing?  May need to remove this section ...
-// ?????
-
-// Image:
-// primaryImage
-
-
-
-
-// function randomResult (data) {
-//     var url = data.objectIDs
-//     for ( i = 0; i < metTarget.length; i++ ) {                    // Loop the targets for the Met API
-//     var j = Math.floor(Math.random() * url.length);         // Pick a random item from the valid results array
-//     var newUrl = metObjUrl + url[j];
-//     metSearch2(newUrl);
-//     }
-// }   
-
-// function metSearch2 (newUrl) {
-//     fetch(newUrl)
-//         .then(function (response) { return response.json(); })
-//         .then(function (data) {
-//             for ( i = 0; i < metTarget.length; i++ ) {
-//                 metTarget[i].setAttribute('src', data.primaryImage);
-//             }
-//         });
-// }

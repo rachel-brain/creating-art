@@ -5,15 +5,11 @@ function loadPreviousImages() {
     localStorage.getItem("previouslySearchedImages")
   );
 
-  console.log(previousImages);
-
   if (previousImages !== null) {
-    console.log(previousImages);
     for (var i = 0; i < previousImages.length; i++) {
       getAndDisplayImages(i, previousImages[i]);
     }
   } else {
-    console.error("Dude!! Search for some images first");
     window.alert("No images have been searched previously");
   }
 }

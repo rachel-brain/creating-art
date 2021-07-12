@@ -60,9 +60,6 @@ p {
   margin-right: 0px;
 }
 
-/* .flex-container .row {
-  } */
-
 .row {
   flex: 1 1 auto;
   height: 100%;

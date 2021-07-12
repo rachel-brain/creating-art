@@ -18,7 +18,7 @@ function colorsWriteObject(focusImage) {
 function harvardWriteObject(focusImage) {
     // Write object to the DOM  
     // Extract Image from stored Object
-    card2.setAttribute('src', focusImage.primaryimageurl); // [0] is static @Chandler please alter this in line with your API amendments
+    card2.setAttribute('src', focusImage.primaryimageurl);
     // Extract Chosen Data from stored Object
     card1.innerHTML += "<h2 class='css'>" + "Artist Name" + "</h2><br>";
     card1.innerHTML += "<p class='css'>" + focusImage.people[0].name + "</p><br>";
