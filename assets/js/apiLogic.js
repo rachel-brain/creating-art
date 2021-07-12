@@ -173,14 +173,6 @@ function saveToLocalStorage(event) {
         "previouslySearchedImages",
         JSON.stringify(previousImages)
       );
-
-    if ((selectedImageId === 
-            "small1"||"big1"||"small2"||"small3"||"small4")){
-        chosen('harvardTarget');
-        } else if (selectedImageId === "big2"||"small5"||"small6"||"small7"||"small8"){
-            chosen('metTarget');
-        }
-
     } else if (previousImages !== null) {
       //previousImages = JSON.parse(localStorage.getItem("previouslySearchedImages"));
       var existsInStorage = findInStorage(previousImages, imgURL);
@@ -191,9 +183,9 @@ function saveToLocalStorage(event) {
           JSON.stringify(previousImages)
         );
       }
-      chosen(selectedImageId);
     }
   }
+  chosen(selectedImageId); // Do not move me (ever)
 }
 
 // searches the image to see if it exists in the entries from the storage
