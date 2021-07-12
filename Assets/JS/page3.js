@@ -54,16 +54,25 @@ function init() {
     var focusImage = JSON.parse(localStorage.getItem('focusImage'));
     // Establish Comparison Variables from objects in localstorage
     var focusImageCompare = localStorage.getItem('focusImage');
-    var metTargetCompare = localStorage.getItem('metTarget');
-    var harvardTargetCompare = localStorage.getItem('harvardTarget');
-    var colorsTargetCompare = localStorage.getItem('colorsTarget');
+        // Harvard Targets 
+        var harvardTargetCompare0 = localStorage.getItem('big1');
+        var harvardTargetCompare1 = localStorage.getItem('small1');
+        var harvardTargetCompare2 = localStorage.getItem('small2');
+        var harvardTargetCompare3 = localStorage.getItem('small3');
+        var harvardTargetCompare4 = localStorage.getItem('small4');
+        var harvardCompare = [harvardTargetCompare0, harvardTargetCompare1, harvardTargetCompare2, harvardTargetCompare3, harvardTargetCompare4];
+        // Met Targets
+        var metTargetCompare0 = localStorage.getItem('big2');
+        var metTargetCompare1 = localStorage.getItem('small5');
+        var metTargetCompare2 = localStorage.getItem('small6');
+        var metTargetCompare3 = localStorage.getItem('small7');
+        var metTargetCompare4 = localStorage.getItem('small8');
+        var metCompare = [metTargetCompare0, metTargetCompare1, metTargetCompare2, metTargetCompare3, metTargetCompare4];
     // Call the write function for the selected object
-    if (focusImageCompare === metTargetCompare) {
+    if (metCompare.includes(focusImageCompare)) {
         metWriteObject(focusImage);
-    } else if (focusImageCompare === harvardTargetCompare) {
+    } else if (harvardCompare.includes(focusImageCompare)) {
         harvardWriteObject(focusImage);
-    } else if (focusImageCompare === colorsTargetCompare) {
-        colorsWriteObject(focusImage);
     }
 }
 
