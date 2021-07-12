@@ -79,6 +79,8 @@ var clHEX = [
 // Harvard API //
 
 function harvardSearch (element) {
+    var name = element.id;
+
     fetch(harvardUrl + harvardQueries + harvardKey + hasImage)
         .then(function (response) { return response.json(); })
         .then(function (data) {
@@ -90,7 +92,7 @@ function harvardSearch (element) {
             } else {
                 element.setAttribute("src", dataValidate);
             }
-            localStorage.setItem('harvardTarget', JSON.stringify(data));    // Store full api object 
+            localStorage.setItem(name, JSON.stringify(data.records[j]));    // Store full api object 
         })
 }
 
@@ -122,6 +124,7 @@ function metSearch (element) {
 
 // 2nd API call that gets all the details of the Object ID, including image
 function metObjSearch (objectID, element) {
+    var name = element.id;
     var URL = metObjUrl + objectID.toString();
     fetch(URL)
         .then(function (response) {
@@ -142,7 +145,7 @@ function metObjSearch (objectID, element) {
             } else {
                 element.setAttribute("src", dataValidate);
             }
-            localStorage.setItem('metTarget', JSON.stringify(data));    // Store full api object 
+            localStorage.setItem(name, JSON.stringify(data));    // Store full api object 
         })
     }
 
@@ -172,7 +175,7 @@ function colorApiInjection () {
     colData.map(function(item, index) { // Map creates a concurrent loop
         for ( i = 0; i < colorsTarget.length; i++ ) {
             colorsTarget[i].setAttribute('src', item.imageUrl.replace('http', 'https'))
-            localStorage.setItem('colorsTarget' + i, JSON.stringify(item));    // Store full api object 
+            // localStorage.setItem('colorsTarget' + i, JSON.stringify(item));    // Store full api object 
         }
     }) 
 }
@@ -224,12 +227,7 @@ if ((selectedImageId ===
           JSON.stringify(previousImages)
         );
       }
-      if ((selectedImageId === 
-        "small1"||"big1"||"small2"||"small3"||"small4")){
-          chosen('harvardTarget');
-        } else if (selectedImageId === "big2"||"small5"||"small6"||"small7"||"small8"){
-            chosen('metTarget');
-        }
+      chosen(selectedImageId);
     }
   }
 }
