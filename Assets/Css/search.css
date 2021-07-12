@@ -58,9 +58,6 @@ p {
   margin-right: 0px;
 }
 
-/* .flex-container .row {
-  } */
-
 .row {
   flex: 1 1 auto;
   height: 100%;
@@ -72,10 +69,6 @@ p {
   height: 100%;
 }
 
-/* .a {
-  background: red;
-} */
-
 .b {
   background: blue;
 }
@@ -83,18 +76,6 @@ p {
 .c {
   background: orange;
 }
-
-/* .d {
-  background: yellow;
-} */
-
-/* .e {
-  background: green;
-} */
-
-/* .f {
-  background: brown;
-} */
 
 .g {
   background: pink;
@@ -113,7 +94,6 @@ img {
   margin-left: auto;
   margin-right: auto;
   border-radius: 50px;
-  
 }
 
 body {
@@ -122,7 +102,6 @@ body {
   margin: 0;
   padding: 0;
   overflow: scroll;
-
 }
 
 div {
