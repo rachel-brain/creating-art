@@ -18,18 +18,18 @@ function colorsWriteObject(focusImage) {
 function harvardWriteObject(focusImage) {
     // Write object to the DOM  
     // Extract Image from stored Object
-    card2.setAttribute('src', focusImage.records[0].primaryimageurl); // [0] is static @Chandler please alter this in line with your API amendments
+    card2.setAttribute('src', focusImage.primaryimageurl); // [0] is static @Chandler please alter this in line with your API amendments
     // Extract Chosen Data from stored Object
     card1.innerHTML += "<h2 class='css'>" + "Artist Name" + "</h2><br>";
-    card1.innerHTML += "<p class='css'>" + focusImage.records[0].people[0].name + "</p><br>";
+    card1.innerHTML += "<p class='css'>" + focusImage.people[0].name + "</p><br>";
     card1.innerHTML += "<h2 class='css'>" + "Artist Culture" + "</h2><br>";
-    card1.innerHTML += "<p class='css'>" + focusImage.records[0].people[0].culture + "</p><br>";
+    card1.innerHTML += "<p class='css'>" + focusImage.people[0].culture + "</p><br>";
     card1.innerHTML += "<h2 class='css'>" + "Medium" + "</h2><br>";
-    card1.innerHTML += "<p class='css'>" + focusImage.records[0].technique + "</p><br>";
+    card1.innerHTML += "<p class='css'>" + focusImage.technique + "</p><br>";
     card1.innerHTML += "<h2 class='css'>" + "Title" + "</h2><br>";
-    card1.innerHTML += "<p class='css'>" + focusImage.records[0].title + "</p><br>";
+    card1.innerHTML += "<p class='css'>" + focusImage.title + "</p><br>";
     card1.innerHTML += "<h2 class='css'>" + "Date" + "</h2><br>";
-    card1.innerHTML += "<p class='css'>" + focusImage.records[0].dated + "</p><br>";
+    card1.innerHTML += "<p class='css'>" + focusImage.dated + "</p><br>";
 }
 
 function metWriteObject(focusImage) {
